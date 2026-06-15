@@ -19,8 +19,7 @@ class Database {
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // TAMBAHKAN BARIS INI UNTUK TES KONEKSI
-            echo "Koneksi database berhasil terkoneksi!";
+    
 
         } catch(PDOException $exception) {
             echo "Koneksi database gagal: " . $exception->getMessage();
