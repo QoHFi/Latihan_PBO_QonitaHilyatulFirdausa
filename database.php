@@ -1,0 +1,36 @@
+<?php
+// database.php
+
+class Database {
+    private $host = "localhost";
+    private $db_name = "db_latihan_pbo_ti1c_qonitahilyatulfirdausa";
+    private $username = "root";
+    private $password = "";
+    public $conn;
+
+    public function getConnection() {
+        $this->conn = null;
+
+        try {
+            $this->conn = new PDO(
+                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
+                $this->username,
+                $this->password
+            );
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // TAMBAHKAN BARIS INI UNTUK TES KONEKSI
+            echo "Koneksi database berhasil terkoneksi!";
+
+        } catch(PDOException $exception) {
+            echo "Koneksi database gagal: " . $exception->getMessage();
+        }
+
+        return $this->conn;
+    }
+}
+
+// KODE TAMBAHAN UNTUK LANGSUNG TESTING DI BROWSER:
+$test = new Database();
+$test->getConnection();
+?>
