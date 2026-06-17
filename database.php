@@ -19,7 +19,7 @@ class Database {
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    
+
 
         } catch(PDOException $exception) {
             echo "Koneksi database gagal: " . $exception->getMessage();
@@ -29,7 +29,4 @@ class Database {
     }
 }
 
-// KODE TAMBAHAN UNTUK LANGSUNG TESTING DI BROWSER:
-$test = new Database();
-$test->getConnection();
 ?>

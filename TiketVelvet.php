@@ -15,6 +15,21 @@ class TiketVelvet extends Tiket {
         $this->layananButler = $layananButler;
     }
 
+    public function tampilkanDataSpesifik($db) {
+        // Mengambil seluruh data tiket yang memiliki Jenis_Studio 'Velvet'
+        $query = "SELECT * FROM tabel_Tiket WHERE Jenis_Studio = 'Velvet'";
+
+        try {
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+
+            $hasil = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $hasil;
+        } catch (PDOException $e) {
+            echo "Error saat mengambil data Velvet: " . $e->getMessage();
+            return [];
+        }
+    }
 
     // Getter & Setter spesifik Velvet
     public function getBantalSelimutPack() { return $this->bantalSelimutPack; }

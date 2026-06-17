@@ -15,6 +15,21 @@ class TiketIMAX extends Tiket {
         $this->efekGerakFitur = $efekGerakFitur;
     }
 
+    public function tampilkanDataSpesifik($db) {
+    // Menggunakan kondisi Jenis_Studio yang jauh lebih efisien
+    $query = "SELECT * FROM tabel_Tiket WHERE Jenis_Studio = 'IMAX'";
+
+    try {
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+
+        $hasil = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $hasil;
+    } catch (PDOException $e) {
+        echo "Error saat mengambil data IMAX: " . $e->getMessage();
+        return [];
+    }
+}
 
     // Getter & Setter spesifik IMAX
     public function getKacamata3dId() { return $this->kacamata3dId; }
