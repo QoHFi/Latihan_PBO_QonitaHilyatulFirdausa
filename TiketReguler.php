@@ -33,12 +33,24 @@ class TiketReguler extends Tiket {
         }
     }
 
+    // ==================== WAJIB: MENGGUGURKAN ABSTRACT METHOD ====================
+    public function hitungTotalHarga() {
+        return $this->harga_dasar_tiket * $this->jumlah_kursi;
+    }
+
+    // ==================== METHOD OVERRIDING (REGULER) ====================
+    public function tampilkanFasilitas() {
+        // Mengambil data dari properti spesifik kelas Reguler
+        return "Studio Reguler - Fasilitas Audio: " . $this->tipeAudio . " | Lokasi Kursi: Baris " . $this->lokasiBaris;
+    }
+
     // Getter & Setter spesifik Reguler
     public function getTipeAudio() { return $this->tipeAudio; }
     public function setTipeAudio($tipeAudio) { $this->tipeAudio = $tipeAudio; }
-    public function getLocationsBaris() { return $this->lokasiBaris; }
+
+    // Sudah diperbaiki dari getLocationsBaris menjadi getLokasiBaris
+    public function getLokasiBaris() { return $this->lokasiBaris; }
     public function setLokasiBaris($lokasiBaris) { $this->lokasiBaris = $lokasiBaris; }
 }
-
 
 ?>

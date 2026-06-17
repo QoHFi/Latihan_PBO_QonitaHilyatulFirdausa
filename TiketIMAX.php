@@ -16,20 +16,32 @@ class TiketIMAX extends Tiket {
     }
 
     public function tampilkanDataSpesifik($db) {
-    // Menggunakan kondisi Jenis_Studio yang jauh lebih efisien
-    $query = "SELECT * FROM tabel_Tiket WHERE Jenis_Studio = 'IMAX'";
+        // Menggunakan kondisi Jenis_Studio yang jauh lebih efisien
+        $query = "SELECT * FROM tabel_Tiket WHERE Jenis_Studio = 'IMAX'";
 
-    try {
-        $stmt = $db->prepare($query);
-        $stmt->execute();
+        try {
+            $stmt = $db->prepare($query);
+            $stmt->execute();
 
-        $hasil = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $hasil;
-    } catch (PDOException $e) {
-        echo "Error saat mengambil data IMAX: " . $e->getMessage();
-        return [];
+            $hasil = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $hasil;
+        } catch (PDOException $e) {
+            echo "Error saat mengambil data IMAX: " . $e->getMessage();
+            return [];
+        }
     }
-}
+
+    // ==================== METHOD OVERRIDING (IMAX) ====================
+    public function hitungTotalHarga() {
+        // Sesuai soal: (jumlah_kursi * harga_dasar_tiket) + 35000
+        return ($this->jumlah_kursi * $this->harga_dasar_tiket) + 35000;
+    }
+
+    // ==================== METHOD OVERRIDING (IMAX) ====================
+    public function tampilkanFasilitas() {
+        // Mengambil data dari properti spesifik kelas IMAX
+        return "Studio IMAX - Layar Lebar & Audio Flat | ID Kacamata 3D: " . $this->kacamata3dId . " | Fitur Gerak: " . $this->efekGerakFitur;
+    }
 
     // Getter & Setter spesifik IMAX
     public function getKacamata3dId() { return $this->kacamata3dId; }

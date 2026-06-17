@@ -31,6 +31,18 @@ class TiketVelvet extends Tiket {
         }
     }
 
+    // ==================== METHOD OVERRIDING (VELVET) ====================
+    public function hitungTotalHarga() {
+        // Sesuai soal: (jumlah_kursi * harga_dasar_tiket) * 1.50
+        return ($this->jumlah_kursi * $this->harga_dasar_tiket) * 1.50;
+    }
+
+    // ==================== METHOD OVERRIDING (VELVET) ====================
+    public function tampilkanFasilitas() {
+        // Mengambil data dari properti spesifik kelas Velvet
+        return "Studio Velvet (Premium) - Paket Kenyamanan: " . $this->bantalSelimutPack . " | Layanan Butler: " . $this->layananButler;
+    }
+
     // Getter & Setter spesifik Velvet
     public function getBantalSelimutPack() { return $this->bantalSelimutPack; }
     public function setBantalSelimutPack($bantalSelimutPack) { $this->bantalSelimutPack = $bantalSelimutPack; }
